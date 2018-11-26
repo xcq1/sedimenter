@@ -8,7 +8,8 @@ A typical use case for JavaScript is to [globally catch exceptions](https://deve
  and then do a request with your preferred client-server communication framework.
  
 Start up the service and if you want logging capability, forward the JSON output to your favorite backend log collection framework. 
-If your source maps are very large or your network is slow, you can extends the timeout by setting the `SEDIMENTER_TIMEOUT` env (in ms, default is 10 000).  
+If your source maps are very large or your network is slow, you can extends the timeout (for both requests) by setting the `SEDIMENTER_TIMEOUT` env (in ms, 
+default is 40 000).  
 
 ### REST
 
@@ -34,12 +35,12 @@ POST /[deobfuscate|log]
 - Just get back a deobfuscated exception or log directly in JSON format
 - Endpoints for REST
 - Detection of surce maps in referenced files via end of file comment
-- Resilient requesting done with Retry and Hystrix 
+- Resilient requesting done with Retry and Hystrix
+- Caching with Caffeine 
 
 ## Todo-List
 
 - Proper testing
-- Caching with Caffeine
 - Endpoints for GraphQL and gRPC
 - Authentication for endpoints
 

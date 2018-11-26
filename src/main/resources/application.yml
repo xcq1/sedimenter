@@ -3,5 +3,8 @@ spring:
     active: logstash
   main:
     banner-mode: 'off'
+  cache:
+    caffeine:
+      spec: maximumSize=100, expireAfterAccess=12h
 sedimenter:
-  timeout: 25000
+  timeout: 40000

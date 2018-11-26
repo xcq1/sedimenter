@@ -18,7 +18,7 @@ class SourceMapBackend {
     val timeout: String = ""
 
     @Cacheable("sourcemaps")
-    fun getSourceMap(sourceUrl: String) = GetSourceFileRequest(sourceUrl, timeout.toIntOrNull() ?: 25000).execute()
+    fun getSourceMap(sourceUrl: String) = GetSourceFileRequest(sourceUrl, timeout.toIntOrNull() ?: 40000).execute()
 
 }
 
@@ -53,7 +53,7 @@ class GetSourceFileRequest(private val sourceUrl: String,
             wholeFile.lines().findLast { line ->
                 line.startsWith(SOURCE_MAP_PREFIX)
             }?.let {
-                GetSourceMapFileRequest(sourceUrl, it.removePrefix(SOURCE_MAP_PREFIX), timeout).execute()
+                GetSourceMapFileRequest(sourceUrl, it.removePrefix(SOURCE_MAP_PREFIX), timeout / 2).execute()
             }
         }
     }
